@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mulakat-sim.local/schemas/plan-request.schema.json",
+  "title": "POST /v1/plan isteği",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "interview_id",
+    "persona_id",
+    "persona_version",
+    "language",
+    "mode",
+    "duration_min",
+    "profile"
+  ],
+  "properties": {
+    "interview_id": {
+      "$ref": "common.schema.json#/$defs/uuid"
+    },
+    "persona_id": {
+      "type": "string"
+    },
+    "persona_version": {
+      "type": "integer"
+    },
+    "language": {
+      "$ref": "common.schema.json#/$defs/language"
+    },
+    "mode": {
+      "$ref": "common.schema.json#/$defs/mode"
+    },
+    "duration_min": {
+      "type": "integer",
+      "minimum": 10,
+      "maximum": 45
+    },
+    "profile": {
+      "$ref": "common.schema.json#/$defs/profile"
+    },
+    "cv_text": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 20000
+    },
+    "job_posting_text": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 20000
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "rubric_version": 1,
+  "language": "tr",
+  "overall_score": 50,
+  "summary": "Teknik temelin sağlam; cevapların ölçüm ve sonuç kısmında zayıflıyor.",
+  "competency_scores": [
+    {
+      "competency_id": "technical_depth",
+      "score": 3,
+      "comment": "N+1'i doğru çözdün ama tespit yöntemini ancak sorulunca açıkladın.",
+      "evidence": [
+        {
+          "turn_index": 3,
+          "quote": "EF Core'da Include kullanarak"
+        }
+      ]
+    },
+    {
+      "competency_id": "communication",
+      "score": 3,
+      "comment": "Net ama kısa; bağlam vermeden çözüme atladın.",
+      "evidence": [
+        {
+          "turn_index": 1,
+          "quote": "son projem bir kütüphane API'siydi"
+        }
+      ]
+    }
+  ],
+  "question_feedback": [
+    {
+      "question_id": "q2",
+      "strengths": [
+        "Çözümü doğru seçtin."
+      ],
+      "improvements": [
+        "Problemi nasıl ölçtüğünü baştan söyle."
+      ],
+      "better_answer_example": "Önce loglarda aynı sorgunun döngü içinde tekrarlandığını görürüm; sonra Include veya projection ile tek sorguya indirip süreyi karşılaştırırım.",
+      "star": null
+    }
+  ],
+  "speech_feedback": {
+    "comments": [
+      "Dakikada ~4 dolgu kelimesi var; en sık 'ıı'. Cevaba başlamadan bir saniye düşünmek bunu azaltır."
+    ]
+  },
+  "language_feedback": null,
+  "next_steps": [
+    "Teknik cevaplara 'nasıl fark ettim' adımıyla başla.",
+    "Davranışsal sorularda sonucu sayıyla bitir."
+  ]
+}

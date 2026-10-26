@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mulakat-sim.local/schemas/plan.schema.json",
+  "title": "Mülakat planı",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "plan_version",
+    "estimated_duration_min",
+    "competencies",
+    "questions"
+  ],
+  "properties": {
+    "plan_version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "estimated_duration_min": {
+      "type": "integer",
+      "minimum": 5,
+      "maximum": 60
+    },
+    "competencies": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "weight"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "common.schema.json#/$defs/competency_id"
+          },
+          "weight": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 15,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "type",
+          "text",
+          "competency_ids",
+          "difficulty",
+          "expected_points",
+          "max_follow_ups"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^q[0-9]+$"
+          },
+          "type": {
+            "enum": [
+              "warmup",
+              "behavioral",
+              "technical",
+              "situational",
+              "cv_deep_dive",
+              "job_requirement",
+              "coding",
+              "closing"
+            ]
+          },
+          "text": {
+            "type": "string",
+            "minLength": 5
+          },
+          "competency_ids": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "common.schema.json#/$defs/competency_id"
+            }
+          },
+          "difficulty": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          },
+          "expected_points": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 8
+          },
+          "max_follow_ups": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          }
+        }
+      }
+    }
+  }
+}

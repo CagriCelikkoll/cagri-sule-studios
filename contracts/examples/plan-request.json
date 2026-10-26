@@ -1,0 +1,19 @@
+{
+  "interview_id": "0192f6a4-7c1e-7b3a-9d2e-5f1a2b3c4d5e",
+  "persona_id": "tech-lead-backend",
+  "persona_version": 1,
+  "language": "tr",
+  "mode": "voice",
+  "duration_min": 20,
+  "profile": {
+    "role": "Backend Developer",
+    "level": "junior",
+    "technologies": [
+      "C#",
+      ".NET",
+      "PostgreSQL"
+    ]
+  },
+  "cv_text": null,
+  "job_posting_text": null
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mulakat-sim.local/schemas/report-request.schema.json",
+  "title": "POST /v1/report isteği",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "interview_id",
+    "persona_id",
+    "persona_version",
+    "language",
+    "mode",
+    "profile",
+    "plan",
+    "history",
+    "session_metrics"
+  ],
+  "properties": {
+    "interview_id": {
+      "$ref": "common.schema.json#/$defs/uuid"
+    },
+    "persona_id": {
+      "type": "string"
+    },
+    "persona_version": {
+      "type": "integer"
+    },
+    "language": {
+      "$ref": "common.schema.json#/$defs/language"
+    },
+    "mode": {
+      "$ref": "common.schema.json#/$defs/mode"
+    },
+    "profile": {
+      "$ref": "common.schema.json#/$defs/profile"
+    },
+    "plan": {
+      "$ref": "plan.schema.json"
+    },
+    "history": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "common.schema.json#/$defs/history_item"
+      }
+    },
+    "session_metrics": {
+      "$ref": "common.schema.json#/$defs/session_metrics"
+    }
+  }
+}

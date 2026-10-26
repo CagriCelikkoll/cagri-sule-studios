@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mulakat-sim.local/schemas/hub-envelope.schema.json",
+  "title": "SignalR OnEvent zarfı (camelCase)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "type",
+    "seq",
+    "interviewId",
+    "ts",
+    "payload"
+  ],
+  "properties": {
+    "type": {
+      "enum": [
+        "interview.state",
+        "transcript.partial",
+        "turn.user.final",
+        "interviewer.delta",
+        "interviewer.final",
+        "interviewer.interrupted",
+        "metrics.update",
+        "report.ready",
+        "error"
+      ]
+    },
+    "seq": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "interviewId": {
+      "type": "string"
+    },
+    "ts": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "payload": {
+      "type": "object"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "interviewer.final"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": [
+              "turnIndex",
+              "text",
+              "questionId",
+              "action"
+            ],
+            "properties": {
+              "action": {
+                "enum": [
+                  "follow_up",
+                  "next_question",
+                  "wrap_up",
+                  "end"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "interview.state"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "created",
+                  "active",
+                  "paused",
+                  "completed",
+                  "reported",
+                  "failed",
+                  "deleted"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "type": {
+            "const": "error"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "retryable"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

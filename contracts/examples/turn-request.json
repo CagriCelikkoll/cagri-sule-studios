@@ -1,0 +1,148 @@
+{
+  "interview_id": "0192f6a4-7c1e-7b3a-9d2e-5f1a2b3c4d5e",
+  "persona_id": "tech-lead-backend",
+  "persona_version": 1,
+  "language": "tr",
+  "mode": "voice",
+  "profile": {
+    "role": "Backend Developer",
+    "level": "junior",
+    "technologies": [
+      "C#",
+      ".NET",
+      "PostgreSQL"
+    ]
+  },
+  "plan": {
+    "plan_version": 1,
+    "estimated_duration_min": 20,
+    "competencies": [
+      {
+        "id": "technical_depth",
+        "weight": 0.35
+      },
+      {
+        "id": "problem_solving",
+        "weight": 0.25
+      },
+      {
+        "id": "communication",
+        "weight": 0.2
+      },
+      {
+        "id": "ownership",
+        "weight": 0.2
+      }
+    ],
+    "questions": [
+      {
+        "id": "q1",
+        "type": "warmup",
+        "text": "Kısaca kendinden ve son projenden bahseder misin?",
+        "competency_ids": [
+          "communication"
+        ],
+        "difficulty": 1,
+        "expected_points": [
+          "rolü",
+          "teknolojiler",
+          "kendi katkısı"
+        ],
+        "max_follow_ups": 1
+      },
+      {
+        "id": "q2",
+        "type": "technical",
+        "text": "Bir API'de N+1 sorgu problemini nasıl fark eder ve çözersin?",
+        "competency_ids": [
+          "technical_depth",
+          "problem_solving"
+        ],
+        "difficulty": 3,
+        "expected_points": [
+          "N+1 tanımı",
+          "profiling/log",
+          "eager loading veya projection",
+          "ölçüm"
+        ],
+        "max_follow_ups": 2
+      },
+      {
+        "id": "q3",
+        "type": "behavioral",
+        "text": "Bir hatayı canlıya çıkardığın bir zamanı anlatır mısın?",
+        "competency_ids": [
+          "ownership",
+          "communication"
+        ],
+        "difficulty": 2,
+        "expected_points": [
+          "durum",
+          "ne yaptığı",
+          "sonuç",
+          "ders"
+        ],
+        "max_follow_ups": 2
+      },
+      {
+        "id": "q4",
+        "type": "closing",
+        "text": "Bize sormak istediğin bir şey var mı?",
+        "competency_ids": [
+          "motivation_fit"
+        ],
+        "difficulty": 1,
+        "expected_points": [],
+        "max_follow_ups": 0
+      }
+    ]
+  },
+  "state": {
+    "current_question_id": "q2",
+    "follow_ups_used": 0,
+    "asked_question_ids": [
+      "q1",
+      "q2"
+    ],
+    "elapsed_sec": 412,
+    "remaining_sec": 788,
+    "token_budget_remaining": 42000
+  },
+  "history": [
+    {
+      "index": 0,
+      "speaker": "interviewer",
+      "text": "Merhaba, ben Kaan. Kısaca kendinden ve son projenden bahseder misin?",
+      "question_id": "q1"
+    },
+    {
+      "index": 1,
+      "speaker": "candidate",
+      "text": "Merhaba, Uludağ'da bilgisayar mühendisliği okuyorum, son projem bir kütüphane API'siydi."
+    },
+    {
+      "index": 2,
+      "speaker": "interviewer",
+      "text": "Güzel. Bir API'de N+1 sorgu problemini nasıl fark eder ve çözersin?",
+      "question_id": "q2",
+      "interrupted_at_char": null
+    }
+  ],
+  "candidate_turn": {
+    "index": 3,
+    "text": "Iıı şey, EF Core'da Include kullanarak ilişkili verileri tek sorguda çekerim.",
+    "metrics": {
+      "duration_ms": 41200,
+      "word_count": 96,
+      "wpm": 139.8,
+      "filler_count": 5,
+      "fillers": {
+        "ıı": 3,
+        "şey": 2
+      },
+      "long_pause_count": 1,
+      "longest_pause_ms": 3100,
+      "time_to_first_word_ms": 1800
+    }
+  }
+}

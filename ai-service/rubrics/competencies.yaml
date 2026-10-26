@@ -1,0 +1,73 @@
+# Yetkinlik rubriği — rubric_version: 1
+# Kimlikler contracts/schemas/common.schema.json içindeki competency_id listesiyle birebir aynı.
+# Her yetkinlik için 1, 3 ve 5 puanın davranışsal tanımı var; 2 ve 4 aradaki durumlar.
+# Rapor prompt'u puan verirken bu tanımlara atıf yapmalı ve kanıt cümlesi göstermeli.
+
+rubric_version: 1
+scale: { min: 1, max: 5 }
+
+competencies:
+  communication:
+    name: { tr: "İletişim", en: "Communication" }
+    anchors:
+      1: "Cevap dağınık veya soruyla ilgisiz; dinleyici ne anlatıldığını çıkaramıyor."
+      3: "Anlaşılır ama ya gereksiz uzun ya da bağlam vermeden kısa; ana fikir bulunabiliyor."
+      5: "Önce özet, sonra ayrıntı; uzunluk soruya uygun; teknik terimleri gerektiğinde açıklıyor."
+
+  problem_solving:
+    name: { tr: "Problem çözme", en: "Problem solving" }
+    anchors:
+      1: "Problemi tanımlamadan çözüme atlıyor veya çözüm üretemiyor."
+      3: "Makul bir çözüm öneriyor ama alternatifleri veya ödünleşimleri tartışmıyor."
+      5: "Problemi netleştiriyor, en az iki seçeneği karşılaştırıyor, seçimini gerekçelendiriyor, nasıl doğrulayacağını söylüyor."
+
+  technical_depth:
+    name: { tr: "Teknik derinlik", en: "Technical depth" }
+    anchors:
+      1: "Kavramları yanlış kullanıyor veya yalnızca isim sayıyor."
+      3: "Kavramları doğru açıklıyor; 'neden' sorulunca yüzeyde kalıyor."
+      5: "Kavramın iç işleyişini ve sınırlarını biliyor; gerçek bir deneyimden somut örnek veriyor."
+    level_note: "Puan, profile.level'a göre değil mutlak verilir; rapor yorumunda seviyeye göre bağlam eklenir."
+
+  ownership:
+    name: { tr: "Sahiplenme", en: "Ownership" }
+    anchors:
+      1: "Sonuçları başkalarına veya koşullara bağlıyor; kendi rolü belirsiz."
+      3: "Kendi rolünü anlatıyor ama sorun çıktığında ne yaptığı sınırlı."
+      5: "Kendi katkısını takımdan ayırıyor, hatasını kabul ediyor, sonradan ne değiştirdiğini anlatıyor."
+
+  teamwork:
+    name: { tr: "Takım çalışması", en: "Teamwork" }
+    anchors:
+      1: "Takım arkadaşlarından olumsuz söz ediyor veya işbirliği örneği yok."
+      3: "İşbirliği örneği var ama kendi davranışı pasif."
+      5: "Anlaşmazlığı nasıl çözdüğünü, başkalarına nasıl yardım ettiğini somut anlatıyor."
+
+  motivation_fit:
+    name: { tr: "Motivasyon ve uyum", en: "Motivation & fit" }
+    anchors:
+      1: "Neden bu rolü istediğini açıklayamıyor; genel ifadeler."
+      3: "Gerekçeleri var ama role/şirkete özgü değil."
+      5: "Role özgü, kendi geçmişiyle bağlantılı ve ileriye dönük gerekçe sunuyor."
+
+  structure:
+    name: { tr: "Yapılandırma (STAR)", en: "Structure (STAR)" }
+    anchors:
+      1: "Hikâyede durum, eylem ve sonuç birbirine karışık; sonuç yok."
+      3: "STAR'ın 3 parçası var; biri (genelde sonuç) eksik veya muğlak."
+      5: "Durum–Görev–Eylem–Sonuç net; sonuç mümkünse sayıyla ve çıkarılan dersle bitiyor."
+    applies_to: [behavioral, situational]
+
+  learning_agility:
+    name: { tr: "Öğrenme çevikliği", en: "Learning agility" }
+    anchors:
+      1: "Yeni bir şey öğrendiği örnek veremiyor."
+      3: "Örnek veriyor ama nasıl öğrendiği belirsiz."
+      5: "Yeni bir konuyu nasıl, ne hızla öğrendiğini ve uyguladığını somut anlatıyor."
+
+speech_guidelines:
+  # Konuşma sayıları .NET'ten gelir (session_metrics). Bunlar yorum için referans aralıklardır, puana girmez.
+  wpm_comfortable: [110, 160]
+  filler_per_min_good: 2
+  filler_per_min_attention: 5
+  long_pause_ms: 2000

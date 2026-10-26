@@ -1,0 +1,256 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mulakat-sim.local/schemas/common.schema.json",
+  "title": "Ortak tanımlar",
+  "$defs": {
+    "uuid": {
+      "type": "string",
+      "minLength": 1
+    },
+    "language": {
+      "enum": [
+        "tr",
+        "en"
+      ]
+    },
+    "localized": {
+      "type": "object",
+      "required": [
+        "tr",
+        "en"
+      ],
+      "properties": {
+        "tr": {
+          "type": "string"
+        },
+        "en": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "competency_id": {
+      "enum": [
+        "communication",
+        "problem_solving",
+        "technical_depth",
+        "ownership",
+        "teamwork",
+        "motivation_fit",
+        "structure",
+        "learning_agility"
+      ]
+    },
+    "mode": {
+      "enum": [
+        "text",
+        "voice"
+      ]
+    },
+    "profile": {
+      "type": "object",
+      "required": [
+        "role",
+        "level"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "role": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "level": {
+          "enum": [
+            "intern",
+            "junior",
+            "mid",
+            "senior"
+          ]
+        },
+        "technologies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 20
+        }
+      }
+    },
+    "turn_metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "word_count"
+      ],
+      "properties": {
+        "duration_ms": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "word_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "wpm": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "filler_count": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "fillers": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "long_pause_count": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "longest_pause_ms": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "time_to_first_word_ms": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        }
+      }
+    },
+    "history_item": {
+      "type": "object",
+      "required": [
+        "index",
+        "speaker",
+        "text"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "speaker": {
+          "enum": [
+            "interviewer",
+            "candidate"
+          ]
+        },
+        "text": {
+          "type": "string"
+        },
+        "question_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "interrupted_at_char": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        }
+      }
+    },
+    "session_metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total_duration_ms"
+      ],
+      "properties": {
+        "total_duration_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "candidate_talk_ratio": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "avg_wpm": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "filler_per_min": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "top_fillers": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": {
+            "type": "integer"
+          }
+        },
+        "long_pause_count": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "avg_time_to_first_word_ms": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      }
+    },
+    "error": {
+      "type": "object",
+      "required": [
+        "code",
+        "message",
+        "retryable"
+      ],
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "retryable": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

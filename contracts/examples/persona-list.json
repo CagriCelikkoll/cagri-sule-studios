@@ -1,0 +1,34 @@
+[
+  {
+    "id": "hr-generalist",
+    "version": 1,
+    "display_name": {
+      "tr": "Elif — İK Uzmanı",
+      "en": "Elif — HR Specialist"
+    },
+    "short_description": {
+      "tr": "Sıcak ama dikkatli; motivasyon ve iletişim odaklı.",
+      "en": "Warm but attentive; focuses on motivation and communication."
+    },
+    "interview_types": [
+      "hr",
+      "behavioral"
+    ],
+    "difficulty": 2,
+    "languages": [
+      "tr",
+      "en"
+    ],
+    "voice": {
+      "tr": "tr-TR-EmelNeural",
+      "en": "en-US-JennyNeural"
+    },
+    "competencies": [
+      "communication",
+      "motivation_fit",
+      "teamwork",
+      "ownership",
+      "structure"
+    ]
+  }
+]

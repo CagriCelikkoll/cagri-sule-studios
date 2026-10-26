@@ -1,0 +1,84 @@
+{
+  "plan_version": 1,
+  "estimated_duration_min": 20,
+  "competencies": [
+    {
+      "id": "technical_depth",
+      "weight": 0.35
+    },
+    {
+      "id": "problem_solving",
+      "weight": 0.25
+    },
+    {
+      "id": "communication",
+      "weight": 0.2
+    },
+    {
+      "id": "ownership",
+      "weight": 0.2
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "type": "warmup",
+      "text": "Kısaca kendinden ve son projenden bahseder misin?",
+      "competency_ids": [
+        "communication"
+      ],
+      "difficulty": 1,
+      "expected_points": [
+        "rolü",
+        "teknolojiler",
+        "kendi katkısı"
+      ],
+      "max_follow_ups": 1
+    },
+    {
+      "id": "q2",
+      "type": "technical",
+      "text": "Bir API'de N+1 sorgu problemini nasıl fark eder ve çözersin?",
+      "competency_ids": [
+        "technical_depth",
+        "problem_solving"
+      ],
+      "difficulty": 3,
+      "expected_points": [
+        "N+1 tanımı",
+        "profiling/log",
+        "eager loading veya projection",
+        "ölçüm"
+      ],
+      "max_follow_ups": 2
+    },
+    {
+      "id": "q3",
+      "type": "behavioral",
+      "text": "Bir hatayı canlıya çıkardığın bir zamanı anlatır mısın?",
+      "competency_ids": [
+        "ownership",
+        "communication"
+      ],
+      "difficulty": 2,
+      "expected_points": [
+        "durum",
+        "ne yaptığı",
+        "sonuç",
+        "ders"
+      ],
+      "max_follow_ups": 2
+    },
+    {
+      "id": "q4",
+      "type": "closing",
+      "text": "Bize sormak istediğin bir şey var mı?",
+      "competency_ids": [
+        "motivation_fit"
+      ],
+      "difficulty": 1,
+      "expected_points": [],
+      "max_follow_ups": 0
+    }
+  ]
+}

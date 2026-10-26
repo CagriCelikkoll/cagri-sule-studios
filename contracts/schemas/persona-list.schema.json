@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mulakat-sim.local/schemas/persona-list.schema.json",
+  "title": "GET /v1/personas cevabı",
+  "type": "array",
+  "items": {
+    "$ref": "persona.schema.json"
+  }
+}

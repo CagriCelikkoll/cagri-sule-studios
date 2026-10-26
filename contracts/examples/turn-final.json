@@ -1,0 +1,13 @@
+{
+  "text": "Include kullanmak iyi bir başlangıç. Peki bunun bir N+1 olduğunu ilk başta nasıl fark ederdin?",
+  "decision": {
+    "action": "follow_up",
+    "question_id": "q2",
+    "reason": "Tespit yöntemi anlatılmadı."
+  },
+  "usage": {
+    "input_tokens": 3120,
+    "output_tokens": 48,
+    "model": "claude-haiku-5-5"
+  }
+}

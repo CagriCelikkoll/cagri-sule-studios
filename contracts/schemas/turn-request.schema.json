@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mulakat-sim.local/schemas/turn-request.schema.json",
+  "title": "POST /v1/turn isteği",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "interview_id",
+    "persona_id",
+    "persona_version",
+    "language",
+    "mode",
+    "profile",
+    "plan",
+    "state",
+    "history",
+    "candidate_turn"
+  ],
+  "properties": {
+    "interview_id": {
+      "$ref": "common.schema.json#/$defs/uuid"
+    },
+    "persona_id": {
+      "type": "string"
+    },
+    "persona_version": {
+      "type": "integer"
+    },
+    "language": {
+      "$ref": "common.schema.json#/$defs/language"
+    },
+    "mode": {
+      "$ref": "common.schema.json#/$defs/mode"
+    },
+    "profile": {
+      "$ref": "common.schema.json#/$defs/profile"
+    },
+    "plan": {
+      "$ref": "plan.schema.json"
+    },
+    "state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "current_question_id",
+        "follow_ups_used",
+        "asked_question_ids",
+        "elapsed_sec",
+        "remaining_sec",
+        "token_budget_remaining"
+      ],
+      "properties": {
+        "current_question_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "follow_ups_used": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "asked_question_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "elapsed_sec": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "remaining_sec": {
+          "type": "integer"
+        },
+        "token_budget_remaining": {
+          "type": "integer"
+        }
+      }
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "$ref": "common.schema.json#/$defs/history_item"
+      }
+    },
+    "candidate_turn": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "index",
+            "text",
+            "metrics"
+          ],
+          "properties": {
+            "index": {
+              "type": "integer"
+            },
+            "text": {
+              "type": "string",
+              "maxLength": 8000
+            },
+            "metrics": {
+              "$ref": "common.schema.json#/$defs/turn_metrics"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

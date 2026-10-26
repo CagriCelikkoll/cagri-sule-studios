@@ -1,0 +1,12 @@
+{
+  "type": "interviewer.final",
+  "seq": 12,
+  "interviewId": "0192f6a4-7c1e-7b3a-9d2e-5f1a2b3c4d5e",
+  "ts": "2026-10-26T09:14:03Z",
+  "payload": {
+    "turnIndex": 4,
+    "text": "Peki bunun bir N+1 olduğunu nasıl fark ederdin?",
+    "questionId": "q2",
+    "action": "follow_up"
+  }
+}
