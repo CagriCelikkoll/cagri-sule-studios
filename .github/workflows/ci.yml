@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Restore
+        run: dotnet restore backend/MulakatSim.sln
+
+      - name: Build
+        run: dotnet build backend/MulakatSim.sln --no-restore -c Release
+
+      - name: Test
+        run: dotnet test backend/MulakatSim.sln --no-build -c Release
+
+  contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install jsonschema pyyaml
+
+      - name: Generate and validate schemas/examples
+        run: python contracts/generate_and_validate.py .
+
+      - name: Generated files must match the repository
+        run: |
+          git diff --exit-code contracts/
+          # Also fail on newly generated files that are not committed.
+          test -z "$(git status --porcelain contracts/)"

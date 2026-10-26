@@ -1,0 +1,28 @@
+# .NET
+bin/
+obj/
+*.user
+TestResults/
+
+# Python
+__pycache__/
+.venv/
+*.pyc
+
+# Node
+node_modules/
+.next/
+
+# Environment
+.env
+
+# Local-only tooling and notes
+CLAUDE.md
+.claude/
+.local/
+
+# OS / editors
+.DS_Store
+.idea/
+.vs/
+.vscode/

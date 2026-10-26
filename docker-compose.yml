@@ -1,0 +1,88 @@
+name: mulakatsim
+
+# All settings come from .env (copy .env.example to .env first).
+
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7
+    ports:
+      - "${REDIS_PORT}:6379"
+
+  minio:
+    image: minio/minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+    ports:
+      - "${MINIO_API_PORT}:9000"
+      - "${MINIO_CONSOLE_PORT}:9001"
+    volumes:
+      - minio-data:/data
+
+  backend:
+    build: ./backend
+    environment:
+      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT}
+      ConnectionStrings__Postgres: Host=postgres;Port=5432;Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD};Gss Encryption Mode=Disable
+      ConnectionStrings__Redis: redis:6379
+      Storage__Endpoint: http://minio:9000
+      Storage__AccessKey: ${MINIO_ROOT_USER}
+      Storage__SecretKey: ${MINIO_ROOT_PASSWORD}
+      Storage__Bucket: ${MINIO_BUCKET}
+      Jwt__Issuer: ${JWT_ISSUER}
+      Jwt__Audience: ${JWT_AUDIENCE}
+      Jwt__SigningKey: ${JWT_SIGNING_KEY}
+      AiService__Url: ${AI_SERVICE_URL}
+      AiService__Key: ${AI_SERVICE_KEY}
+      AzureSpeech__Key: ${AZURE_SPEECH_KEY}
+      AzureSpeech__Region: ${AZURE_SPEECH_REGION}
+    ports:
+      - "${BACKEND_PORT}:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      minio:
+        condition: service_started
+
+  # ai-service and web only start with `docker compose --profile full up`.
+  # Their Dockerfiles do not exist yet; they will be added under ai-service/ and web/.
+  ai-service:
+    profiles: ["full"]
+    build: ./ai-service
+    environment:
+      AI_SERVICE_KEY: ${AI_SERVICE_KEY}
+    ports:
+      - "${AI_SERVICE_PORT}:8000"
+
+  web:
+    profiles: ["full"]
+    build: ./web
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:${BACKEND_PORT}
+    ports:
+      - "${WEB_PORT}:3000"
+    depends_on:
+      - backend
+
+volumes:
+  postgres-data:
+  minio-data:
